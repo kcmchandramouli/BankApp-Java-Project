@@ -15,6 +15,9 @@ spec:
       labels:
         app: mysql
     spec:
+      # tolerations:              # 👈 ADD IT if nodes are tainted
+      # - key: "CriticalAddonsOnly"
+      #   operator: "Exists"
       containers:
       - image: mysql:8
         name: mysql
@@ -53,6 +56,9 @@ spec:
       labels:
         app: bankapp
     spec:
+      # tolerations:              # 👈 ADD IT if nodes are tainted
+      # - key: "CriticalAddonsOnly"
+      #   operator: "Exists"
       containers:
       - name: bankapp
         image: kcmchandramoulli/java-bank:latest  #image from docker hub
@@ -65,6 +71,22 @@ spec:
           value: root
         - name: SPRING_DATASOURCE_PASSWORD
           value: Test@123
+        livenessProbe:
+          httpGet:
+            path: /login
+            port: 8080
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: 8080
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
 ---
 # Bank Application Service
 apiVersion: v1
@@ -72,7 +94,7 @@ kind: Service
 metadata:
   name: bankapp-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP #LoadBalancer
   ports:
   - port: 80
     targetPort: 8080
