@@ -33,25 +33,23 @@ permissions:
 jobs:
   gitleaks:
     name: Gitleaks
-    # if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/gitleaks.yml@task/master/testing_tools
-    with:
-      rules_ref: task/master/testing_tools
+    if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/gitleaks.yml@master
 
   trivy:
     name: Trivy
-    # if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/trivy.yml@task/master/testing_tools
+    if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/trivy.yml@master
 
   semgrep:
     name: Semgrep
-    # if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@task/master/testing_tools
+    if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@master
   
   zap:
     name: ZAP
-    # if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/zap.yml@task/master/testing_tools
+    if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/zap.yml@master
     with:
       target_url: ${{ vars.ZAP_TARGET_URL }}
     
