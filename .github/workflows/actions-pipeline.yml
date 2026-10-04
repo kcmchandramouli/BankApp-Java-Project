@@ -40,11 +40,13 @@ jobs:
     name: Gitleaks
     # if: github.event_name == 'pull_request'
     uses: kcmchandramouli/edf/.github/workflows/gitleaks.yml@task/master/testing_tools
+    with:
+      rules_ref: task/master/testing_tools
 
-  # trivy:
-  #   name: Trivy
-  #   if: github.event_name == 'pull_request'
-  #   uses: kcmchandramouli/edf/.github/workflows/trivy.yml@task/master/testing_tools
+  trivy:
+    name: Trivy
+    # if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/trivy.yml@task/master/testing_tools
 
   # zap:
   #   name: ZAP
