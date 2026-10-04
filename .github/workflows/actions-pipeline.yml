@@ -48,12 +48,12 @@ jobs:
     # if: github.event_name == 'pull_request'
     uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@task/master/testing_tools
   
-  # zap:
-  #   name: ZAP
-  #   if: github.event_name == 'pull_request'
-  #   uses: kcmchandramouli/edf/.github/workflows/zap.yml@feature/master/gitleaks_workflow
-  #   with:
-  #     target_url: ${{ vars.ZAP_TARGET_URL }}
+  zap:
+    name: ZAP
+    # if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/zap.yml@task/master/testing_tools
+    with:
+      target_url: ${{ vars.ZAP_TARGET_URL }}
     
   maven-compile:
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: setup JDK 17
+      - name: setup JDK 17-m"
         uses: actions/setup-java@v3
         with:
           java-version: '17'
