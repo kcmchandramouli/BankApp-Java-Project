@@ -33,8 +33,14 @@ permissions:
 jobs:
   gitleaks:
     name: Gitleaks
+    if: github.event_name == 'pull_request'
     uses: kcmchandramouli/edf/.github/workflows/gitleaks.yml@feature/master/gitleaks_workflow
-  
+
+  trivy:
+    name: Trivy
+    if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/trivy.yml@feature/master/gitleaks_workflow
+    
   maven-compile:
     runs-on: ubuntu-latest
 
