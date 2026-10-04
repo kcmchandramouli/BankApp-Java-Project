@@ -31,11 +31,6 @@ permissions:
   contents: read
 
 jobs:
-  # semgrep:
-  #   name: Semgrep
-  #   if: github.event_name == 'pull_request'
-  #   uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@feature/master/gitleaks_workflow
-
   gitleaks:
     name: Gitleaks
     # if: github.event_name == 'pull_request'
@@ -48,6 +43,11 @@ jobs:
     # if: github.event_name == 'pull_request'
     uses: kcmchandramouli/edf/.github/workflows/trivy.yml@task/master/testing_tools
 
+  semgrep:
+    name: Semgrep
+    # if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@task/master/testing_tools
+  
   # zap:
   #   name: ZAP
   #   if: github.event_name == 'pull_request'
