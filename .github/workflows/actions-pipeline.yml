@@ -31,15 +31,27 @@ permissions:
   contents: read
 
 jobs:
+  # semgrep:
+  #   name: Semgrep
+  #   if: github.event_name == 'pull_request'
+  #   uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@feature/master/gitleaks_workflow
+
   gitleaks:
     name: Gitleaks
-    if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/gitleaks.yml@feature/master/gitleaks_workflow
+    # if: github.event_name == 'pull_request'
+    uses: kcmchandramouli/edf/.github/workflows/gitleaks.yml@task/master/testing_tools
 
-  trivy:
-    name: Trivy
-    if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/trivy.yml@feature/master/gitleaks_workflow
+  # trivy:
+  #   name: Trivy
+  #   if: github.event_name == 'pull_request'
+  #   uses: kcmchandramouli/edf/.github/workflows/trivy.yml@task/master/testing_tools
+
+  # zap:
+  #   name: ZAP
+  #   if: github.event_name == 'pull_request'
+  #   uses: kcmchandramouli/edf/.github/workflows/zap.yml@feature/master/gitleaks_workflow
+  #   with:
+  #     target_url: ${{ vars.ZAP_TARGET_URL }}
     
   maven-compile:
     runs-on: ubuntu-latest
