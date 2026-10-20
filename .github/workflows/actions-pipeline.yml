@@ -40,9 +40,6 @@ jobs:
     name: Trivy
     if: github.event_name == 'pull_request'
     uses: kcmchandramouli/edf/.github/workflows/trivy.yml@task/master/testing_tools
-    secrets:
-      defectdojo_url: ${{ secrets.DEFECTDOJO_URL }}
-      defectdojo_token: ${{ secrets.DEFECTDOJO_API_TOKEN }}
 
   # semgrep:
   #   name: Semgrep
