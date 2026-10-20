@@ -66,6 +66,8 @@ jobs:
     name: Global build validation
     if: github.event_name == 'pull_request'
     uses: kcmchandramouli/global-build-validation/.github/workflows/gbv_pr_check.yml@master
+    secrets:
+      gbv_checkout_token: ${{ secrets.GBV_CHECKOUT_TOKEN }}
 
   maven-compile:
     runs-on: ubuntu-latest
