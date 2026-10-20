@@ -69,6 +69,7 @@ jobs:
     secrets:
       gbv_checkout_token: ${{ secrets.GBV_CHECKOUT_TOKEN }}
 
+
   maven-compile:
     runs-on: ubuntu-latest
 
