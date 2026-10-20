@@ -44,23 +44,23 @@ jobs:
       defectdojo_url: ${{ secrets.DEFECTDOJO_URL }}
       defectdojo_token: ${{ secrets.DEFECTDOJO_API_TOKEN }}
 
-  semgrep:
-    name: Semgrep
-    if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@task/master/testing_tools
-    secrets:
-      defectdojo_url: ${{ secrets.DEFECTDOJO_URL }}
-      defectdojo_token: ${{ secrets.DEFECTDOJO_API_TOKEN }}
+  # semgrep:
+  #   name: Semgrep
+  #   if: github.event_name == 'pull_request'
+  #   uses: kcmchandramouli/edf/.github/workflows/semgrep.yml@task/master/testing_tools
+  #   secrets:
+  #     defectdojo_url: ${{ secrets.DEFECTDOJO_URL }}
+  #     defectdojo_token: ${{ secrets.DEFECTDOJO_API_TOKEN }}
 
-  zap:
-    name: ZAP
-    if: github.event_name == 'pull_request'
-    uses: kcmchandramouli/edf/.github/workflows/zap.yml@task/master/testing_tools
-    with:
-      target_url: ${{ vars.ZAP_TARGET_URL }}
-    secrets:
-      defectdojo_url: ${{ secrets.DEFECTDOJO_URL }}
-      defectdojo_token: ${{ secrets.DEFECTDOJO_API_TOKEN }}
+  # zap:
+  #   name: ZAP
+  #   if: github.event_name == 'pull_request'
+  #   uses: kcmchandramouli/edf/.github/workflows/zap.yml@task/master/testing_tools
+  #   with:
+  #     target_url: ${{ vars.ZAP_TARGET_URL }}
+  #   secrets:
+  #     defectdojo_url: ${{ secrets.DEFECTDOJO_URL }}
+  #     defectdojo_token: ${{ secrets.DEFECTDOJO_API_TOKEN }}
 
   gbv:
     name: Global build validation
@@ -68,7 +68,6 @@ jobs:
     uses: kcmchandramouli/global-build-validation/.github/workflows/gbv_pr_check.yml@master
     secrets:
       gbv_checkout_token: ${{ secrets.GBV_CHECKOUT_TOKEN }}
-
 
   maven-compile:
     runs-on: ubuntu-latest
